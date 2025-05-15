@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 7%;
+    --foreground: 0 0% 96%;
+    
+    --primary: 0 100% 59%;
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 0 0% 6%;
+    --secondary-foreground: 0 0% 100%;
+    
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 0 100% 59%;
+  }
+  
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer components {
+  /* Skeuomorphic UI styles */
+  .skeuo-container {
+    @apply relative border-4mm border-primary rounded-lg overflow-hidden;
+    box-shadow: 0 0 20px rgba(255, 48, 48, 0.4), inset 0 0 10px rgba(0, 0, 0, 0.6);
+  }
+  
+  .skeuo-button {
+    @apply px-4 py-2 bg-gradient-to-b from-gray-700 to-gray-900 text-white rounded-md 
+           border border-gray-800 shadow-md hover:from-gray-600 hover:to-gray-800 active:from-gray-900 
+           active:to-gray-950 active:shadow-inner transition-all duration-150;
+  }
+  
+  .skeuo-button-primary {
+    @apply px-4 py-2 bg-gradient-to-b from-red-600 to-red-800 text-white rounded-md 
+           border border-red-900 shadow-md hover:from-red-500 hover:to-red-700 active:from-red-800 
+           active:to-red-950 active:shadow-inner transition-all duration-150;
+  }
+  
+  .skeuo-input {
+    @apply bg-gray-900 border border-gray-700 rounded-md px-3 py-2 text-white shadow-inner
+           focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none;
+  }
+  
+  .skeuo-panel {
+    @apply bg-gradient-to-b from-gray-800 to-gray-900 rounded-md border border-gray-700 shadow-md p-4;
+  }
+  
+  .skeuo-text {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+  }
+  
+  .skeuo-thumbnail-img {
+    @apply transition-all duration-300;
+    filter: brightness(0.85) contrast(1.1);
+  }
+  
+  .skeuo-thumbnail-img:hover {
+    filter: brightness(1) contrast(1.2);
+    transform: scale(1.03);
+  }
+}
