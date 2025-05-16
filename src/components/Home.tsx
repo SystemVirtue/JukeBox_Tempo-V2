@@ -50,7 +50,7 @@ const Home = () => {
         <div className={`skeuo-container mx-auto ${settings.aspectRatio === '4:3' ? 'aspect-4/3' : 'aspect-16/9'}`}>
           <div className="h-full flex flex-col bg-gradient-to-b from-gray-800 to-gray-900">
             {/* Tab Content */}
-            <TabContent className="flex-1 overflow-hidden" activeTab={activeTab}>
+            <TabContent className="flex-1 overflow-hidden">
               {/* Jukebox Tab */}
               <div className={activeTab === 'jukebox' ? 'block h-full' : 'hidden'}>
                 <JukeboxWindow 
