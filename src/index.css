@@ -61,12 +61,27 @@
   }
   
   .skeuo-thumbnail-img {
-    @apply transition-all duration-300;
+    @apply transition-all duration-300 will-change-transform;
     filter: brightness(0.85) contrast(1.1);
+    backface-visibility: hidden;
   }
   
   .skeuo-thumbnail-img:hover {
     filter: brightness(1) contrast(1.2);
-    transform: scale(1.03);
+    transform: scale(1.05);
+  }
+  
+  .aspect-video {
+    aspect-ratio: 16 / 9;
+  }
+  
+  .skeuo-thumbnail-container {
+    @apply overflow-hidden rounded-md relative;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+  }
+  
+  .skeuo-thumbnail-duration {
+    @apply absolute bottom-1 right-1 bg-black/80 text-white text-xs px-1.5 py-0.5 rounded font-mono;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
   }
 }

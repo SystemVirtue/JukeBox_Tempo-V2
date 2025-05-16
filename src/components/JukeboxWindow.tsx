@@ -205,30 +205,42 @@ const JukeboxWindow = ({ queue, currentVideoIndex, isPlaying, setIsPlaying }: Ju
           )}
           
           {/* Video grid */}
-          <div className={`grid grid-cols-${gridColumns} gap-4`}>
-            {filteredVideos.map((video, index) => (
+          <div 
+            className={`grid gap-4 mt-4`}
+            style={{ 
+              gridTemplateColumns: `repeat(${gridColumns}, minmax(0, 1fr))`,
+            }}
+          >
+            {filteredVideos.map((video) => (
               <div 
-                key={`${video.youtubeId}-${index}`}
+                key={video.id} 
+                className="skeuo-panel cursor-pointer overflow-hidden transform-gpu transition-all duration-200 hover:translate-y-[-2px] hover:shadow-lg"
                 onClick={() => handleVideoClick(video)}
-                className="skeuo-panel cursor-pointer hover:shadow-lg transition-all"
-                style={{ width: '180px', margin: '0 auto' }}
               >
-                <div className="p-3">
-                  {/* Wider thumbnails (1.8/1 ratio) */}
-                  <div className="relative rounded-md overflow-hidden mb-3" style={{ aspectRatio: '1.8/1' }}>
-                    <img
-                      src={video.thumbnail}
+                <div className="flex flex-col h-full">
+                  <div className="relative overflow-hidden rounded-md aspect-video">
+                    <img 
+                      src={video.thumbnail || 'https://i.ytimg.com/vi/default/hqdefault.jpg'} 
                       alt={video.title}
+                      loading="lazy"
                       className="skeuo-thumbnail-img w-full h-full object-cover"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.src = 'https://i.ytimg.com/vi/default/hqdefault.jpg';
+                      }}
                     />
                     {video.duration && (
-                      <div className="absolute bottom-1 right-1 bg-black/70 text-white text-xs px-1 rounded">
+                      <div className="absolute bottom-1 right-1 bg-black/80 text-white text-xs px-1.5 py-0.5 rounded font-mono">
                         {video.duration}
                       </div>
                     )}
                   </div>
-                  <h3 className="text-sm font-semibold line-clamp-1">{video.title}</h3>
-                  <p className="text-xs text-gray-400 line-clamp-1">{video.artist}</p>
+                  <div className="flex-1 flex flex-col justify-between pt-2">
+                    <div>
+                      <h3 className="text-sm font-semibold line-clamp-2 leading-tight mb-1">{video.title}</h3>
+                      <p className="text-xs text-gray-400 line-clamp-1">{video.artist}</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             ))}
