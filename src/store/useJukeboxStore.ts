@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { LibraryPlaylist, VideoItem, QueueItem } from '../types/playlist'
-import { Settings, TabType, AspectRatio } from '../types/settings'
+import { Settings, TabType } from '../types/settings'
 
 interface JukeboxState {
   // Playlist Management

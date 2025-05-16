@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import Home from './components/Home'
-import { AspectRatio } from './types/settings'
 
 function App() {
   const [isLoading, setIsLoading] = useState(true)

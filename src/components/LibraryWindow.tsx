@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
 import { useJukeboxStore } from '../store/useJukeboxStore';
 import { LibraryPlaylist } from '../types/playlist';
 import { extractPlaylistId, fetchPlaylistDetails, fetchPlaylistVideos } from '../services/playlist.service';

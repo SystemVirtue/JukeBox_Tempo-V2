@@ -1,4 +1,11 @@
-import { VideoItem, LibraryPlaylist } from '../types/playlist';
+import { VideoItem } from '../types/playlist';
+
+// Add TypeScript declaration for Vite's import.meta.env
+declare global {
+  interface ImportMeta {
+    env: Record<string, string>;
+  }
+}
 
 const API_KEY = import.meta.env.VITE_YOUTUBE_API_KEY;
 const BASE_URL = 'https://www.googleapis.com/youtube/v3';
@@ -87,17 +94,17 @@ export const fetchPlaylistVideos = async (
     
     do {
       const pageSize = 50; // Maximum allowed by YouTube API
-      const url = `${BASE_URL}/playlistItems?part=snippet,contentDetails&maxResults=${pageSize}&playlistId=${playlistId}&key=${API_KEY}${
+      const url: string = `${BASE_URL}/playlistItems?part=snippet,contentDetails&maxResults=${pageSize}&playlistId=${playlistId}&key=${API_KEY}${
         nextPageToken ? `&pageToken=${nextPageToken}` : ''
       }`;
       
-      const response = await fetch(url);
+      const response: Response = await fetch(url);
       
       if (!response.ok) {
         throw new Error(`API Error: ${response.status}`);
       }
       
-      const data = await response.json();
+      const data: any = await response.json();
       
       if (!data.items || data.items.length === 0) {
         break;

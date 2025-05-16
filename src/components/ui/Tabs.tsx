@@ -15,7 +15,6 @@ interface TabListProps {
 
 interface TabContentProps {
   children: ReactNode;
-  activeTab: string;
   className?: string;
 }
 
@@ -42,7 +41,7 @@ export const TabList: React.FC<TabListProps> = ({ children, className }) => {
   );
 };
 
-export const TabContent: React.FC<TabContentProps> = ({ children, activeTab, className }) => {
+export const TabContent: React.FC<TabContentProps> = ({ children, className }) => {
   return (
     <div className={cn('w-full h-full', className)}>
       {children}
